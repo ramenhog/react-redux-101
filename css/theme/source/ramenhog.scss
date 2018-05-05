@@ -1,0 +1,105 @@
+/**
+ * Black theme for reveal.js. This is the opposite of the 'white' theme.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono:400,500,700|Fira+Sans:400,700');
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #61dafb;
+
+$mainColor: #000;
+$headingColor: #000;
+
+$mainFontSize: 30px;
+$mainFont: 'Fira Sans', Helvetica, sans-serif;
+$headingFont: 'Fira Mono', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: normal;
+$headingFontWeight: 500;
+$linkColor: #1f8aff;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 2.5em;
+$heading2Size: 1.4em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-light-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #222;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	padding: 15px;
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+.reveal {
+	background: #fdfdfd;
+	border: 6px solid #000;
+
+	.progress {
+		color: #1f8aff;
+		height: 10px;
+	}
+
+	ul {
+		margin-left: 1.5em;
+	}
+
+	li {
+		margin: 0.5em 0;
+	}
+
+	strong {
+		font-weight: 700;
+	}
+
+	.centered {
+		text-align: center;
+	}
+
+	.two-column {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 2em;
+	}
+
+	.🙌 {
+		font-size: 10rem;
+
+		span {
+			-webkit-text-stroke: 5px black;
+			paint-order: stroke fill;
+			color: $backgroundColor;
+			font-weight: 700;
+		}
+	}
+}
+
+code {
+	background: rgba($backgroundColor, 0.5);
+	border: 2px solid black !important;
+	vertical-align: middle !important;
+}

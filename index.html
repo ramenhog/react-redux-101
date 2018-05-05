@@ -4,13 +4,13 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>React/Redux 101</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/ramenhog.css">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/tomorrow-night-bright.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -24,8 +24,264 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section class="centered">
+					<h1>React/Redux</h1>
+					<h1 class="🙌">1<span>0</span>1</h1>
+				</section>
+				<section>
+					<h2>What is React?</h2>
+					<ul>
+						<li>a “JavaScript Library for building user interfaces”</li>
+						<li>the view layer only - renders HTML &amp; handles events
+							<ul>
+								<li>no business logic - that's where Redux comes in</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Virtual DOM</h2>
+					<ul>
+						<li>a <strong>"virtual"</strong> copy of the DOM is kept in memory</li>
+						<li class="fragment">when <strong>state changes</strong> in the application, changes are first applied to the virtual DOM</li>
+						<li class="fragment">a <strong>"diffing" algorithm</strong> identifies what has changed between Virtual DOM and actual DOM</li>
+						<li class="fragment">re-renders <strong>smallest necessary changes</strong> to the actual DOM</li>
+					</ul>
+				</section>
+				<section>
+					<h2>
+						Components
+					</h2>
+					<ul>
+						<li>a description of a piece of user interface</li>
+						<li>accepts arbitrary input object - “props”</li>
+						<li>returns React elements describing what should appear on the screen</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Primary concepts:</h2>
+					<ul>
+						<li><strong>state</strong> - components are pure functions of state
+							<ul>
+								<li>state in...UI out</li>
+								<li>consists of <code>this.props</code> and <code>this.state</code></li>
+							</ul>
+						</li>
+						<li><strong>props</strong> - pieces of information passed from one component to its child component</li>
+						<li>
+							<strong>lifecycle</strong> - defines components behavior during its "life"
+							<ul>
+								<li>allows component to react to state changes, mounting/un-mounting</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Benefits of Components</h2>
+					<ul>
+							<li><strong>composability</strong> - build large programs from small programs
+							</li>
+							<li><strong>encapsulation</strong> - contain entire presentation, behavior and state of a component
+								<ul>
+									<li>outside code cannot influence behavior</li>
+								</ul>
+							</li>
+					</ul>
+				</section>
+				<section>
+					<h2>JSX</h2>
+					<pre><code>
+return (
+	<div className="App">
+		<div className="App-header">
+			<img src={logo} className="App-logo" alt="logo" />
+			<h2>Welcome to React</h2>
+		</div>
+		<p className="App-intro">
+			To get started, edit <code>src/App.js</code> and save to reload.
+		</p>
+	</div>
+);
+
+					</code></pre>
+				</section>
+				<section>
+					<h2>JSX</h2>
+					<h4>what is it?!</h4>
+					<ul>
+						<li>is it HTML? - <strong>no</strong></li>
+						<li class="fragment">is some new templating language - <strong>no</strong></li>
+						<li class="fragment">a syntax extension to JavaScript</li>
+						<li class="fragment">not necessary for React</li>
+					</ul>
+				</section>
+				<section>
+					<h2>JSX</h2>
+					<h4>just a little sugar</h4>
+<pre><code>
+// JSX
+<div className="title">Cookie Recipe</div>
+
+// compiles to
+React.createComponent('div', {className: 'title'}, 'Cookie Recipe')
+
+</code></pre>
+				</section>
+				<section>
+					<h2>But but but...</h2>
+					<h4>what about separation of HTML and JS?! 😱</h4>
+					<ul>
+						<li>rendering logic is inherently coupled with other UI logic</li>
+						<li>not <strong>separating technologies</strong> but <strong>separating concerns</strong></li>
+						<li>only concerned about <strong>presentation</strong>, not <strong>business logic</strong></li>
+					</ul>
+				</section>
+				<section>
+					<h2>Stateless Functional Components</h2>
+					<h4>aka "dumb components"</h4>
+					<ul>
+						<li>doesn't have state or lifecycle</li>
+						<li>just a function that accepts props</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Stateless Functional Components</h2>
+					<pre><code>
+function Welcome(props) {
+	return <h1>Hello, {props.name}</h1>;
+}
+					</code></pre>
+				</section>
+				<section>
+					<h2>Class Components</h2>
+					<h4>aka "smart components"</h4>
+					<ul>
+						<li>maintains own state</li>
+						<li>makes use of lifecycle hooks</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Class Components</h2>
+					<p data-height="526" data-theme-id="33383" data-slug-hash="1604f28198c9b8af6d4943bc70210799" data-default-tab="js,result" data-user="ramenhog" data-embed-version="2" data-pen-title="React Counter Example" data-editable="true" class="codepen">See the Pen <a href="https://codepen.io/ramenhog/pen/1604f28198c9b8af6d4943bc70210799/">React Counter Example</a> by Stephanie (<a href="https://codepen.io/ramenhog">@ramenhog</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+					<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+					</iframe>
+				</section>
+				<section>
+					<h2>Unidirectional data flow</h2>
+					<ul>
+						<li>data flows one way - from the top to the bottom
+							<ul>
+								<li>parents pass down props to their children</li>
+							</ul>
+						</li>
+						<li>ensures <strong>immutability</strong> of data
+							<ul>
+								<li>
+									children modifying state can have unforeseen consequence when not doing so in isolation 🙅🏻‍♀️
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="centered">
+					<h2>What happens when apps scale?</h2>
+					<iframe src="https://giphy.com/embed/zG0kFp6xiGpkk" width="480" height="364" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+				</section>
+				<section>
+					<h2>Redux</h2>
+					<ul>
+						<li>
+								a“database” for the frontend to draw data from and update
+						</li>
+						<li class="fragment">principles:
+							<ul>
+								<li class="fragment">a single source of truth</li>
+								<li class="fragment">state is immutable</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="centered">
+					<h2>The Redux flow</h2>
+					<img src="images/redux-flow.png" />
+				</section>
+				<section>
+					<h2>3 Pillars of Redux</h2>
+					<ol>
+						<li class="fragment">Store</li>
+						<li class="fragment">Actions</li>
+						<li class="fragment">Reducers</li>
+					</ol>
+				</section>
+				<section>
+					<h2>Store</h2>
+					<h4>single source of truth</h4>
+					<ul>
+						<li>an immutable object which contains the state of your app</li>
+						<li>can only change what is in the store by creating a new object with new data and replacing it</li>
+						<li>using immutable state is beneficial for performance, testing and debugging</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Actions</h2>
+					<ul>
+						<li>a function which takes some input and returns an object containing a <code>type</code> and a <code>data</code> property</li>
+						<li>used every time you want to fetch or put something in the store
+							<ul>
+								<li>run the action and pass it any data required</li>
+								<li>once action is fired into the unknown, every reducer can act on it to change the current state</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Actions</h2>
+					<pre><code>
+export function onIncrement() {
+  return {
+    type: 'COUNTER_INCREMENT'
+  }
+}
+
+					</code></pre>
+				</section>
+				<section>
+					<h2>Reducers</h2>
+					<ul>
+						<li>different "tables" in our database</li>
+						<li>responsible for <strong>one slice of state</strong></li>
+						<li>take in the current state and an action and return a new state</li>
+						<li>act only on the action types that this reducer is responsible</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Reducers</h2>
+					<pre><code>
+const counterReducer = (state = 0, action) => {
+	switch (action.type) {
+		case 'COUNTER_INCREMENT':
+			return state + 1;
+		case 'COUNTER_DECREMENT':
+			return state - 1;
+		default:
+			return state;
+	}
+}
+
+					</code></pre>
+				</section>
+				<section>
+					<h2>Counter - reduxified</h2>
+					<p data-height="521" data-theme-id="33383" data-slug-hash="befc09c8028d4c7ce58e31a15846556f" data-default-tab="js,result" data-user="ramenhog" data-embed-version="2" data-pen-title="React/Redux Counter Example" data-editable="true" class="codepen">See the Pen <a href="https://codepen.io/ramenhog/pen/befc09c8028d4c7ce58e31a15846556f/">React/Redux Counter Example</a> by Stephanie (<a href="https://codepen.io/ramenhog">@ramenhog</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+					<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+				</section>
+				<section class="centered">
+					<h2>A Recap</h2>
+					<ul>
+						<li><strong>React</strong> - components as building blocks for UIs</li>
+						<li><strong>Redux</strong> - state management for complex apps with unidirectional data flow</li>
+					</ul>
+				</section>
 			</div>
 		</div>
 
@@ -37,6 +293,7 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				center: true,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
